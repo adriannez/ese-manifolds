@@ -75,7 +75,7 @@ freq = np.zeros((num_bins,N));
 for i in range(0,N-1):
   for j in range(0,num_bins-1):
     result_vec = np.ndarray.flatten(result[:,i,0])
-    freq[j,i] = 1/num_sims*counts(result_vec,-a+step_size*j,-a+step_size*(j+1),1)[0]
+    freq[j,i] = 1./num_sims*counts(result_vec,-a+step_size*j,-a+step_size*(j+1),1)[0]
 
 binspan = np.linspace(-a, a, num_bins)
 
