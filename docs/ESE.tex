@@ -1,4 +1,4 @@
-% ****** Start of file apssamp.tex ******
+% ****** Start of file ESE.tex ******
 %
 %   This file is part of the APS files in the REVTeX 4.2 distribution.
 %   Version 4.2a of REVTeX, December 2014
@@ -13,10 +13,10 @@
 % See the REVTeX 4 README file
 % It also requires running BibTeX. The commands are as follows:
 %
-%  1)  latex apssamp.tex
-%  2)  bibtex apssamp
-%  3)  latex apssamp.tex
-%  4)  latex apssamp.tex
+%  1)  latex ESE.tex
+%  2)  bibtex ESE
+%  3)  latex ESE.tex
+%  4)  latex ESE.tex
 %
 \documentclass[%
  reprint,
@@ -78,22 +78,29 @@
              %  but any date may be explicitly specified
 
 \begin{abstract}
-ABSTRACT TO BE WRITTEN
-\begin{description}
+ABSTRACT TO BE WRITTEN ,,,
+
+\end{abstract}
+
+%\keywords{Suggested keywords}%Use showkeys class option if keyword
+                              %display desired
+\maketitle
+
+%\tableofcontents
 
 \section{Introduction}
 
 The story is a familiar one. We have a physical system with microstates $X$, each of which with potential $V(x; \lambda)$, whereby the $\lambda$'s are control parameters we can manipulate. The probability distribution of the microstates then follows the Boltzmann Distribution: %
 \begin{equation} \label{equilibrium}
     \rho_\mathrm{eq}(x; \lambda) = \big(Z(\lambda)\big)^{-1} \exp(-\beta V(x; \lambda))
-\end{equation}%
-
+\end{equation}
+\noindent
 whereby $\beta = (k_B T)^{-1}$ is the inverse temperature (and perhaps yet another control parameter), and $Z$ is the Boltzmann factor. In general, if you change $\lambda(t)$ slowly enough, the probability distribution $\rho(x, \lambda(t))$ remains infinitesimally close to $\rho_\mathrm{eq}(x, \lambda(t))$ as specified by Equation \ref{equilibrium}. When you change $\lambda(t)$ faster than the relaxation timescale $\tau_\mathrm{relax}$ (system-dependent), this is not the case.
 \\
 The million dollar question: is it possible to apply an external driving force to your system to offset the non-equilibrium perturbation terms, caused by changing $\lambda(t)$ in a non-adiabatic manner?
 
 This is the problem of Enforced Swift Equilibrium that we are to solve and generalize to arbitrary Riemannian manifolds.
-\begin{equation*} \end{equation*}%
+
 \section{Langevin Dynamics}
 
 In particular, we will start with consider a particle undergoing Browning motion in the overdamped regime, whose dynamics are governed by the Langevin equation:
@@ -102,9 +109,9 @@ In particular, we will start with consider a particle undergoing Browning motion
     \gamma \frac{d\vec{x}}{dt} = - \vec{\nabla} V(\vec{x}; \lambda) % + \sqrt{\frac{2\gamma}{\beta}}\vec{\xi}(t) + \vec{f}_{\mathrm{ext}}(t)
     + \vec{\eta}(t) + \vec{F}_{\mathrm{ext}}(t)
 \end{equation} %
-\\ \\
+\noindent
 whereby $\vec{x}$ is the position of the particle, $\gamma$ is the viscosity, $V_\lambda$ is the potential acting upon the particle, $\eta$ is noise with autoc-orrelation $< \eta(t') \eta(t) > = (2\gamma/\beta) \delta(t' - t)$, and $\vec{F}_{\mathrm{ext}}(t)$ is the external force we act upon the particle.
-\\ \\
+
 Supposing for now that both $\lambda$ and $ \vec{F}_{\mathrm{ext}}$ are constants in time, the well-known solution of the Fokker-Planck equation would solve:
 \begin{align} \label{FP}
     \partial_t \rho &= \vec{\nabla} \cdot \bigg[ \bigg(\frac{\vec{\nabla} V(\vec{x}; \lambda) - \vec{F}_\mathrm{ext}}{\gamma} + \frac{\vec{\nabla} }{\beta \gamma} \bigg) \rho \bigg] \\
@@ -114,7 +121,7 @@ Supposing for now that both $\lambda$ and $ \vec{F}_{\mathrm{ext}}$ are constant
 By setting $\vec{F}_\mathrm{ext}$ to zero, we recover the steady state solution, namely equilibrium distribution $\rho_\mathrm{eq}$ from Equation \ref{equilibrium}.
 
 Now suppose that the control parameters $\lambda(t)$ is time dependent. Subsequently, so is now the potential $V$, i.e. $\partial_t V \neq 0$. As was phrased in the introduction, we want to solve for $\vec{F}_\mathrm{ext}(t)$ that offsets the non-adiabatic perturbations, namely, so that $\rho(x; \lambda(t)) = \rho_\mathrm{eq}(x; \lambda(t))$
-\\ \\
+
 Using now the relations:
 \begin{align*}
    % \partial_t \rho_\mathrm{eq} &= -\dot{\lambda} \partial_{\lambda} \big( \ln(Z(\lambda))  + \beta V(x; \lambda) \big)  \rho_{\mathrm{eq}} \\
@@ -137,11 +144,9 @@ we now have:
 \begin{equation} \label{eq:ESE}
     \nabla \cdot \vec{P} =  -\gamma \partial_t \rho_\mathrm{eq} %\gamma \dot{\lambda} \partial_{\lambda} \big( \ln[Z_{\lambda}]  + \beta V_{\lambda}(x) \big) \rho_\mathrm{eq}
 \end{equation}
-
+\noindent
 wherein we rewrote $Z(\lambda)$ and $V(x; \lambda)$ as $Z_\lambda$ and $V_{\lambda}(x)$ respectively as to compacti-fy things. Equation \ref{eq:ESE} is the governing equation of ESE. In previous works, it has been solved in one dimension [cite]. In this paper, we will generalize this result to (1) higher dimesional spaces, and (2) abritrary, non-Euclidean manifolds.
 
-\begin{equation*} \end{equation*}%
-\\
 \section{SOLUTION VIA THE HODGE DECOMPOSITION}
 
 Consider that our phase space is no longer $\mathbb{R}^{d}$, but rather an arbitrary compact, orientable Riemannian manifold $M$ with metric $g$. Re-writing now the vector $\vec{P}$ as a differential one-form $P = P_i dx^{i}$, we can rewrite equation \ref{eq:ESE} as:
@@ -181,13 +186,11 @@ wherein $\Delta$ is the Generalized Laplacian operator $d^{\dagger}d + d d^{\dag
 
 Quick note: because $B$ vanishes, we can easily add/subtract it, so in a way we may change gauges by setting $B \neq 0$, and therefore making the substitution $P \leftarrow P - d^{\dagger} B $. (Remember that $P = \rho_{\mathrm{eq}} F_{\mathrm{ext}}\ \ $!)
 
-\begin{equation*} \end{equation*}%
 \section{Examples}
 
-\\
 \subsection{Higher Dimensional Euclidean Space}
+To be written.
 
-\\
 \subsection{Rigid Rotor}
 Lettuce now consider a rigid rotor, whose phase space is the two dimensional sphere $M = S^2$. We have
 \begin{equation}
@@ -205,8 +208,8 @@ Because there is no $\phi$ dependence, the spherical harmonics reduce to the Len
 
 Given the higher-temperature regime where $\beta^{-1} = k_{B} T >> |p E(t)|$, we can approximate the Boltzmann distribution:
 \begin{align*}
-    \rho(\theta, \phi, t) &\approx \frac{\exp(\beta p E(t) cos\theta)}{Z} \\
-    &= \frac{1 + (\beta p E(t) \cos\theta)}{4 \pi}
+    \rho(\theta, \phi, t) &\approx \frac{1 - \beta V(\theta, \phi, t)}{4 \pi} \\
+    &\approx \frac{1 + (\beta p E(t) \cos\theta)}{4 \pi}
 \end{align*}
 whereby we use that for this particular particular potential, $Z = 4\pi + \mathbb{O}((\beta|p E(t)|)^2)$. that's right, this is supposed to be a big-O notation.
 
@@ -224,40 +227,64 @@ To invert to get back $\vec{F}_{\mathrm{ext}}(t)$, we remember that $\vec{P} =  
     &\approx \frac{\gamma \beta p \dot{E}(t)}{2} \sin (\theta) \ \hat{\theta}
 \end{align}
 which is enforceable by adding an external electric field $\Delta E_{\mathrm{ESE}}(t) = \gamma \beta \dot{E} / 2$.
-\\ \\
+
 Intriguingly, if the original time-changing potential were a sinusoid, for instance $E(t) = E_0 \cos (\omega t)$, the ESE perturbation correction, to first order, would be to modulate the original signal with an exactly out-of-phase contribution to the original field,  $\Delta E_{\mathrm{ESE}}(t) = -(\gamma \beta \omega / 2) E_0 \sin (\omega t) $.
-\\ \\
+
 The resulting electric field would then be $E_{\mathrm{net}}(t) = A E_0 cos(\omega t + \phi) $, where $A = \sqrt{1 + (\gamma \beta \omega / 2)^2 }$, and $\phi = \tan^{-1}(\gamma \beta \omega / 2)$ -- a phase-shifted sinusoid from the original electric field.
-\\ \\
+
 In other words, to recover the equilibrium probability distribution for a sinusoidal electric field, you would apply a net electric field of the same frequency, but just phase-shifted in time, and with a slightly larger amplitude. The larger the sinusoidal frequency, the larger the phase- and ampitude-shifts.
 
-\begin{equation*} \end{equation*}%
-\\
 \subsection{Pair o' Pendula}
 
 The last example we will pursue is that of a Pair o' pendula, see Figure (draw a sketch of a pair of pendula).
 
+\begin{align*}
+  V(\theta_{1}, &\theta_{2}, t) = ... \\
+  & -g_1 \cos\big(\theta_1) - g_2 \cos(\theta_2 - \phi(t)) - \kappa(t) \cos(\theta_1 - \theta_2)
+\end{align*}
+\noindent
+wherein we have the control parameters $\phi(t)$ and $\kappa(t)$, representing  the $\theta_2$ bias and $\theta_1$-$\theta_2$ coupling terms respectivly.
+
+We will consider two limits: high temperature, i.e. $\beta^{-1} >> \min (g_1, g_2, \kappa)$, and low temperature: $\beta^{-1} << \max (g_1, g_2, \kappa)$.
+
+For high temperature, we have that $Z(\phi, \kappa) \approx (2 \pi)^2$ (to first order), and that:
+
+\begin{align*}
+    \rho_{\mathrm{eq}}(\theta_1, \theta_2, t) &\approx \frac{1 - \beta V(\theta_1, \theta_2, t)}{4 \pi^2} \\
+\end{align*}
+
+We have then the equation to solve:
+\begin{align*}
+  \Delta A &\approx \bigg(\frac{\gamma \beta}{4\pi^2}\bigg) \frac{\partial V(\theta_1, \theta_2, t)}{\partial t} \\
+  &= \bigg(\frac{\gamma \beta}{4\pi^2}\bigg) [ g_2 \dot{\phi} \sin(\theta_2 - \phi) - \dot{\kappa} \cos(\theta_2 - \theta_1) ] \\
+\end{align*}
+
+Considering the 2-d Fourier basis ${f_{k_m,k_n}(\theta_1, \theta_2) = \cos(k_m \theta_1 + k_n \theta_2 + \phi})$, we have $\Delta f_{k_m,k_n}(\theta_1, \theta_2) = -(k_m^2 + k_n^2)f_{k_m,k_n}(\theta_1, \theta_2)$
+
+We have then:
+
 \begin{equation}
-  V(\theta_{1}, \theta_{2}) = g_1 \sin\big(\theta_1) + g_2 \sin(\theta_2 - \phi(t)) + \kappa(t) \sin^2\bigg(\frac{\theta_1 - \theta_2}{2}\bigg)
+  A(t) = \bigg(\frac{\gamma \beta}{4\pi^2}\bigg) [ -g_2 \dot{\phi} \sin(\theta_2 - \phi) + \frac{\dot{\kappa}}{2} \cos(\theta_2 - \theta_1) ]
 \end{equation}
 
-\item[Usage]
-Secondary publications and information retrieval purposes.
-\item[Structure]
-You may use the \texttt{description} environment to structure your abstract;
-use the optional argument of the \verb+\item+ command to give the category of each item.
-\end{description}
-\end{abstract}
+Solving for $\vec{F}_\mathrm{ext}$, we have:
+\begin{align*}
+  \vec{F}_{\mathrm{ext}} &= \frac{\vec{\nabla} A}{\rho_{\mathrm{eq}}} \\
+  &= \gamma \beta (\frac{\dot{\kappa}}{2} \sin(\theta_2 - \theta_1) (\hat{\theta}_1 - \hat{\theta}_2 ) - g_2\dot{\phi}\cos(\theta_2 - \phi) \hat{\theta}_2)
+\end{align*}
+\noindent
+This is more or less the high temperature case. For the low temperature case, we use the second order $\cos$ approximation, assuming that is only those terms that would dominate in $\exp (-\beta V)$:
 
-%\keywords{Suggested keywords}%Use showkeys class option if keyword
-                              %display desired
-\maketitle
+\begin{align*}
+  -\beta V &\approx \beta g_1 (1 - \frac{\theta_1^2}{2}) + \beta g_2 (1 - \frac{(\theta_2 - \phi)^2}{2}) + \kappa (1 - \frac{(\theta_2 - \theta_1)^2}{2}) \\
+  &= \beta(g_1 + g_2 + \kappa) + ... \\
+  &\frac{\beta }{2}(g_1 \theta_1^2 + g_2(\theta_2^2 - 2 \theta_2 \phi + \phi^2) + \kappa (\theta_2^2 - 2 \theta_2 \theta_1+  \theta_1^2))
+\end{align*}
 
-%\tableofcontents
-
-\section{\label{sec:level1}}
+Adrianne: I am struggling to finish this part. Original idea, the sum of quadratics (in 2 variables) is still a quadratic, after taking the exponent we would have then a 2d Gaussian. However, it is largely possible that the case the center of the Gaussian, $(\bar{\theta}_1, \bar{\theta}_2)$ is far away from where the 2nd order approximation of cosine holds (ie $\theta_1, \theta_2 - \phi, \theta_1 - \theta_2 << 1$, for certain parameter choices of $\phi$.
+\\
+Best to try to solve analytically the integral $\exp(\beta(\cos(\theta_1) + \cos(\theta_2 - \phi) + \kappa(\theta_2 - \theta_1))$
 
 \end{document}
 %
-% ****** End of file apssamp.tex ******
- 
+% ****** End of file ESE.tex ******
