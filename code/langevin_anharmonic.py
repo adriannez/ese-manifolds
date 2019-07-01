@@ -9,9 +9,9 @@ import collections
 
 #Define constants
 T = 20.0 #Temp
-gamma = 1.0 #Viscosity
+gamma = 10.0 #Viscosity
 k_0 = 1.0 #Initial Spring constant
-k_c = 5.0 #Final spring constant
+k_c = 30.0 #Final spring constant
 noise = np.sqrt(2*gamma*T)
 
 num_sims = 100
@@ -113,15 +113,21 @@ for i in range(0,N-1):
     for j in range(0,num_bins-1):
         k = k_s(tspan[i])
         result_vec = np.ndarray.flatten(result[:,i,0])
-        freq[j,i] = 1/num_sims*counts(result_vec,-a+step_size*j,-a+step_size*(j+1),1)[0]
+        freq[j,i] = 1./num_sims*counts(result_vec,-a+step_size*j,-a+step_size*(j+1),1)[0]
         result_ese_vec = np.ndarray.flatten(result_ese[:,i,0])
-        freq_ese[j,i] = 1/num_sims*counts(result_ese_vec,-a+step_size*j,-a+step_size*(j+1),1)[0]
+        freq_ese[j,i] = 1./num_sims*counts(result_ese_vec,-a+step_size*j,-a+step_size*(j+1),1)[0]
         freq_eq[j,i] = np.exp(-0.25*k*binspan[j]**4/T)
         mean_count[j] = freq_eq[j,i]*(binspan[j])
         var_count[j] = freq_eq[j,i]*(binspan[j]**2)
     freq_eq[:,i] /= np.sum(freq_eq[:,i])
-    var[i] = (sum(np.square(result_vec))-sum(result_vec)**2)/num_sims
-    var_ese[i] = (sum(np.square(result_ese_vec))-sum(result_ese_vec)**2)/num_sims
+
+
+    #var[i] = (sum(np.square(result_vec))-sum(result_vec)**2)/num_sims
+    var[i] = sum(np.square(result_vec - np.mean(result_vec))) / num_sims
+    #var_ese[i] = (sum(np.square(result_ese_vec))-sum(result_ese_vec)**2)/num_sims
+    var_ese[i] = sum(np.square(result_ese_vec - np.mean(result_ese_vec))) / num_sims
+
+
     var_eq[i] = (sum(var_count)-sum(mean_count)**2)/num_sims
 
 
